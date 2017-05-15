@@ -4,7 +4,7 @@ A Django-friendly iterable Enum type with labels.
 
 # Example
 
-```
+```python
 >>> class STATE_CHOICES(Choices):
 ...     NEW = 0
 ...     IN_PROGRESS = 1
@@ -23,7 +23,7 @@ A Django-friendly iterable Enum type with labels.
 
 Usage in Django:
 
-```
+```python
 class MyModel(models.Model):
     class STATUS(Choices):
         CLOSED = 0
