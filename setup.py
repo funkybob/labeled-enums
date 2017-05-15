@@ -1,7 +1,7 @@
 
 from setuptools import setup
 
-with open('README.md') as fin:
+with open('README.rst') as fin:
     description = fin.read()
 
 setup(
