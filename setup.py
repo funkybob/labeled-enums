@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='labeled-enum',
-    version='1.0.0',
+    version='1.0.1',
     description='Django friendly, iterable Enum type with labels.',
     author='Curtis Maloney',
     author_email='curtis@tinbrain.net',
