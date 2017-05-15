@@ -39,11 +39,12 @@ class LabeledEnumMeta(type):
     def __getitem__(cls, key):
         return cls._choices[key]
 
+    def __setattr__(cls, key, value):
+        raise AttributeError('Cannot change values on LabeledEnum type.')
+
     def __iter__(cls):
         return iter(cls._choices.items())
 
 
 class LabeledEnum(metaclass=LabeledEnumMeta):
     '''Base class for choices constants.'''
-    def __init__(self):
-        raise RuntimeError('Do not instantiate singleton class {}'.format(self.__class__.__name__))
