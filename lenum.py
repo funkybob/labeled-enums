@@ -32,6 +32,10 @@ class LabeledEnumMeta(type):
 
         return type.__new__(mcs, name, bases, dict(attrs))
 
+    def __call__(self, value):
+        '''Provide a little backward compatibility with Enum'''
+        return value
+
     def __getitem__(cls, key):
         return cls._choices[key]
 
