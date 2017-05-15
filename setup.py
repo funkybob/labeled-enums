@@ -7,9 +7,7 @@ setup(
     description='Django friendly, iterable Enum type with labels.',
     author='Curtis Maloney',
     author_email='curtis@tinbrain.net',
-    packages=[
-        'lenum',
-    ],
+    py_modules=['lenum',],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
