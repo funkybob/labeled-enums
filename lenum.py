@@ -45,5 +45,5 @@ class LabeledEnumMeta(type):
 
 class LabeledEnum(metaclass=LabeledEnumMeta):
     '''Base class for choices constants.'''
-    def __init__(self, *args, **kwargs):
-        raise RuntimeError()
+    def __init__(self):
+        raise RuntimeError('Do not instantiate singleton class {}'.format(self.__class__.__name__)
