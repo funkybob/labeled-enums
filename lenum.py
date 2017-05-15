@@ -1,3 +1,6 @@
+from collections import OrderedDict
+
+
 class EnumProperty:
     '''Descriptor class for yielding values, but not allowing setting.'''
     def __init__(self, value):
