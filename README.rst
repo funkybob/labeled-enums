@@ -8,7 +8,8 @@ Example
 
 .. code-block:: python
 
-    >>> class STATE_CHOICES(Choices):
+    >>> from lenum import LabeledEnum
+    >>> class STATE_CHOICES(LabeledEnum):
     ...     NEW = 0
     ...     IN_PROGRESS = 1
     ...     REVIEW = 2, 'In Review'
@@ -29,7 +30,7 @@ Usage in Django:
 .. code-block:: python
 
     class MyModel(models.Model):
-        class STATUS(Choices):
+        class STATUS(LabeledEnum):
             CLOSED = 0
             NEW = 1
             PENDING = 2, 'Process Pending'
