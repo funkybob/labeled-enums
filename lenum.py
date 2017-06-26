@@ -47,7 +47,7 @@ class LabeledEnumMeta(type):
     def __iter__(cls):
         return iter(cls._choices.items())
 
-    def label(cls, label):
+    def for_label(cls, label):
         return cls._reverse[label]
 
 

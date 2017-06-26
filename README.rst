@@ -23,6 +23,9 @@ Example
     'In Review'
     >>> list(STATE_CHOICES)
     [(0, 'New'), (1, 'In Progress'), (2, 'In Review')]
+
+    >>> STATE_CHOICES.for_label('In Progress')
+    1
     ```
 
 Usage in Django:

@@ -22,8 +22,8 @@ class TestLenum(TestCase):
         self.assertIsNone(STATUS(99))
 
     def test_reverse(self):
-        self.assertEqual(STATUS.label('Closed'), 0)
-        self.assertEqual(STATUS.label('Processing Failed'), -1)
+        self.assertEqual(STATUS.for_label('Closed'), 0)
+        self.assertEqual(STATUS.for_label('Processing Failed'), -1)
 
     def test_label(self):
         self.assertEqual(STATUS[0], 'Closed')
