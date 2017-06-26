@@ -29,12 +29,14 @@ class LabeledEnumMeta(type):
             _choices[value] = label
             attrs[name] = EnumProperty(value)
         attrs['_choices'] = _choices
+        attrs['_reverse'] = {v: k for k, v in _choices.items()}
 
         return type.__new__(mcs, name, bases, dict(attrs))
 
-    def __call__(self, value):
+    def __call__(cls, value):
         '''Provide a little backward compatibility with Enum'''
-        return value
+        if value in cls._choices:
+            return value
 
     def __getitem__(cls, key):
         return cls._choices[key]
@@ -44,6 +46,9 @@ class LabeledEnumMeta(type):
 
     def __iter__(cls):
         return iter(cls._choices.items())
+
+    def label(cls, label):
+        return cls._reverse[label]
 
 
 class LabeledEnum(metaclass=LabeledEnumMeta):
