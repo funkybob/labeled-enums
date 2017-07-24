@@ -40,3 +40,10 @@ Usage in Django:
             FAILED = -1, 'Processing Failed'
 
         status = models.IntegerField(choices=list(STATUS), default=STATUS.NEW)
+
+Installation
+------------
+
+.. code-block::
+
+    pip install labeled-enum
