@@ -29,7 +29,7 @@ Example
     ```
 
     >>> STATE_CHOICES.names
-    ('NEW', 'IN_PROGRESS', 'REVIEW')
+    frozenset(['NEW', 'IN_PROGRESS', 'REVIEW'])
 
 Usage in Django:
 
