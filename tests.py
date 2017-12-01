@@ -36,3 +36,20 @@ class TestLenum(TestCase):
             (2, 'Process Pending'),
             (-1, 'Processing Failed'),
         ])
+
+    def test_names(self):
+        self.assertEqual(STATUS.names, {
+            'CLOSED', 'NEW', 'PENDING', 'FAILED',
+        }) 
+
+    def test_setattr(self):
+        with self.assertRaises(AttributeError):
+            STATUS.OLD = 3
+
+    def test_setattr_names(self):
+        with self.assertRaises(AttributeError):
+            STATUS.names = {}
+
+    def test_names_mangle(self):
+        with self.assertRaises(AttributeError):
+            STATUS.names.add('foo')
