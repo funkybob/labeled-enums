@@ -28,6 +28,9 @@ Example
     1
     ```
 
+    >>> STATE_CHOICES.names
+    ('NEW', 'IN_PROGRESS', 'REVIEW')
+
 Usage in Django:
 
 .. code-block:: python
@@ -39,7 +42,7 @@ Usage in Django:
             PENDING = 2, 'Process Pending'
             FAILED = -1, 'Processing Failed'
 
-        status = models.IntegerField(choices=list(STATUS), default=STATUS.NEW)
+        status = models.IntegerField(choices=STATUS, default=STATUS.NEW)
 
 Installation
 ------------
