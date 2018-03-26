@@ -31,24 +31,24 @@ class LabeledEnumMeta(type):
             _choices[value] = label
             attrs[name] = EnumProperty(value)
         attrs['names'] = frozenset(_names)
-        attrs['_choices'] = _choices
+        attrs['__members__'] = _choices
         attrs['_reverse'] = {v: k for k, v in _choices.items()}
 
         return type.__new__(mcs, name, bases, dict(attrs))
 
     def __call__(cls, value):
         '''Provide a little backward compatibility with Enum'''
-        if value in cls._choices:
+        if value in cls.__members__:
             return value
 
     def __getitem__(cls, key):
-        return cls._choices[key]
+        return cls.__members__[key]
 
     def __setattr__(cls, key, value):
         raise AttributeError('Cannot change values on LabeledEnum type.')
 
     def __iter__(cls):
-        return iter(cls._choices.items())
+        return iter(cls.__members__.items())
 
     def for_label(cls, label):
         return cls._reverse[label]
