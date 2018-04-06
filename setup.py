@@ -6,7 +6,7 @@ with open('README.rst') as fin:
 
 setup(
     name='labeled-enum',
-    version='1.0.5',
+    version='1.1.0',
     description='Django friendly, iterable Enum type with labels.',
     long_description=description,
     author='Curtis Maloney',
