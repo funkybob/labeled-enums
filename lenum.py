@@ -18,7 +18,6 @@ class LabeledEnumMeta(type):
 
     def __new__(mcs, name, bases, attrs):
         _choices = OrderedDict()
-        _names = set()
 
         for name, value in list(attrs.items()):
             if not name.isupper():
@@ -27,10 +26,9 @@ class LabeledEnumMeta(type):
                 value, label = value
             else:
                 label = name.title().replace('_', ' ')
-            _names.add(name)
             _choices[value] = label
             attrs[name] = EnumProperty(value)
-        attrs['names'] = frozenset(_names)
+        attrs['names'] = frozenset(_choices)
         attrs['__members__'] = _choices
         attrs['_reverse'] = {v: k for k, v in _choices.items()}
 
