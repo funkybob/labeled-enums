@@ -19,25 +19,22 @@ class LabeledEnumMeta(type):
     def __new__(mcs, name, bases, attrs):
         _choices = OrderedDict()
 
+        names = []
         for name, value in list(attrs.items()):
             if not name.isupper():
                 continue
+            names.append(name)
             if isinstance(value, tuple):
                 value, label = value
             else:
                 label = name.title().replace('_', ' ')
             _choices[value] = label
             attrs[name] = EnumProperty(value)
-        attrs['names'] = frozenset(_choices)
+        attrs['names'] = tuple(names)
         attrs['__members__'] = _choices
         attrs['_reverse'] = {v: k for k, v in _choices.items()}
 
         return type.__new__(mcs, name, bases, dict(attrs))
-
-    def __call__(cls, value):
-        '''Provide a little backward compatibility with Enum'''
-        if value in cls.__members__:
-            return value
 
     def __getitem__(cls, key):
         return cls.__members__[key]

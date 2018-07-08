@@ -16,11 +16,6 @@ class TestLenum(TestCase):
         self.assertEqual(STATUS.CLOSED, 0)
         self.assertEqual(STATUS.FAILED, -1)
 
-    def test_compat(self):
-        self.assertEqual(STATUS(0), 0)
-        self.assertEqual(STATUS(1), 1)
-        self.assertIsNone(STATUS(99))
-
     def test_reverse(self):
         self.assertEqual(STATUS.for_label('Closed'), 0)
         self.assertEqual(STATUS.for_label('Processing Failed'), -1)
@@ -38,9 +33,7 @@ class TestLenum(TestCase):
         ])
 
     def test_names(self):
-        self.assertEqual(STATUS.names, {
-            'CLOSED', 'NEW', 'PENDING', 'FAILED',
-        }) 
+        self.assertEqual(STATUS.names, ('CLOSED', 'NEW', 'PENDING', 'FAILED',))
 
     def test_setattr(self):
         with self.assertRaises(AttributeError):
