@@ -36,6 +36,9 @@ class LabeledEnumMeta(type):
 
         return type.__new__(mcs, name, bases, dict(attrs))
 
+    def __call__(cls):
+        return cls
+
     def __getitem__(cls, key):
         return cls.__members__[key]
 

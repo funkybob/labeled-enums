@@ -32,6 +32,17 @@ class TestLenum(TestCase):
             (-1, 'Processing Failed'),
         ])
 
+    def test_iter_callable(self):
+        '''
+        Handles how Django's Form.field choices treats callabls
+        '''
+        self.assertEqual(list(STATUS()), [
+            (0, 'Closed'),
+            (1, 'New'),
+            (2, 'Process Pending'),
+            (-1, 'Processing Failed'),
+        ])
+
     def test_names(self):
         self.assertEqual(STATUS.names, ('CLOSED', 'NEW', 'PENDING', 'FAILED',))
 
