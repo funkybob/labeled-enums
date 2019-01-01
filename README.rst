@@ -35,12 +35,16 @@ Usage in Django:
 
 .. code-block:: python
 
+    class STATUS(LabeledEnum):
+        CLOSED = 0
+        NEW = 1
+        PENDING = 2, 'Process Pending'
+        FAILED = -1, 'Processing Failed'
+
     class MyModel(models.Model):
-        class STATUS(LabeledEnum):
-            CLOSED = 0
-            NEW = 1
-            PENDING = 2, 'Process Pending'
-            FAILED = -1, 'Processing Failed'
+        # django migrations can have trouble resolving imports if we define the
+        # class within the class, so we bind this here for convenience.
+        STATUS = STATUS
 
         status = models.IntegerField(choices=STATUS, default=STATUS.NEW)
 
