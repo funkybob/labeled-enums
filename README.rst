@@ -8,11 +8,12 @@ Example
 
 .. code-block:: python
 
+    >>> from django.utils.translation import gettext_lazy as _
     >>> from lenum import LabeledEnum
     >>> class STATE_CHOICES(LabeledEnum):
     ...     NEW = 0
     ...     IN_PROGRESS = 1
-    ...     REVIEW = 2, 'In Review'
+    ...     REVIEW = 2, _('In Review')
     ...
     >>>
     >>> STATE_CHOICES.NEW
@@ -47,6 +48,20 @@ Usage in Django:
         STATUS = STATUS
 
         status = models.IntegerField(choices=STATUS, default=STATUS.NEW)
+
+Want translations?
+
+.. code-block:: python
+    from django.utils.translation import gettext_lazy as _
+
+    class STATUS(LabeledEnum, label_wrapper=_):
+        CLOSED = 0
+        NEW = 1
+        PENDING = 2, 'Process Pending'
+        FAILED = -1, 'Processing Failed'
+
+All label values (including auto-generated ones) will have `label_wrapper`
+applied first.
 
 Installation
 ------------

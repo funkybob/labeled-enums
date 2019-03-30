@@ -16,7 +16,7 @@ class LabeledEnumMeta(type):
         '''Use an ordered dict for declared values.'''
         return OrderedDict()
 
-    def __new__(mcs, name, bases, attrs):
+    def __new__(mcs, name, bases, attrs, label_wrapper=None, **kwargs):
         _choices = OrderedDict()
 
         names = []
@@ -28,6 +28,8 @@ class LabeledEnumMeta(type):
                 value, label = value
             else:
                 label = name.title().replace('_', ' ')
+            if label_wrapper:
+                label = label_wrapper(label)
             _choices[value] = label
             attrs[name] = EnumProperty(value)
         attrs['names'] = tuple(names)

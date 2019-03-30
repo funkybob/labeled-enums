@@ -57,3 +57,16 @@ class TestLenum(TestCase):
     def test_names_mangle(self):
         with self.assertRaises(AttributeError):
             STATUS.names.add('foo')
+
+
+class TestLabelWrapper(TestCase):
+
+    def test_lower(self):
+
+        class STATUS(LabeledEnum, label_wrapper=lambda x: x.lower()):
+            CLOSED = 0
+            NEW = 1
+            PENDING = 2, 'Process Pending'
+            FAILED = -1, 'Processing Failed'
+
+        self.assertEqual(STATUS[2], 'process pending')
