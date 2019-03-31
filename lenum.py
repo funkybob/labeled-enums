@@ -16,7 +16,7 @@ class LabeledEnumMeta(type):
         '''Use an ordered dict for declared values.'''
         return OrderedDict()
 
-    def __new__(mcs, name, bases, attrs, label_wrapper=None, **kwargs):
+    def __new__(mcs, classname, bases, attrs, label_wrapper=None, **kwargs):
         _choices = OrderedDict()
 
         names = []
@@ -36,7 +36,7 @@ class LabeledEnumMeta(type):
         attrs['__members__'] = _choices
         attrs['_reverse'] = {v: k for k, v in _choices.items()}
 
-        return type.__new__(mcs, name, bases, dict(attrs))
+        return type.__new__(mcs, classname, bases, dict(attrs))
 
     def __call__(cls):
         return cls

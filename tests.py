@@ -12,6 +12,13 @@ class STATUS(LabeledEnum):
 
 class TestLenum(TestCase):
 
+    def test_name(self):
+        '''
+        Make sure we don't goof the name when mangling the class.
+        Thanks, Hynek!
+        '''
+        assert STATUS.__name__ == 'STATUS'
+
     def test_lookup(self):
         self.assertEqual(STATUS.CLOSED, 0)
         self.assertEqual(STATUS.FAILED, -1)
