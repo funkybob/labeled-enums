@@ -52,6 +52,7 @@ Usage in Django:
 Want translations?
 
 .. code-block:: python
+
     from django.utils.translation import gettext_lazy as _
 
     class STATUS(LabeledEnum, label_wrapper=_):
